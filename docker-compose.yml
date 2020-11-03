@@ -11,6 +11,16 @@ services:
       - 8001:80
     networks:
       - symfony
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile-php
+      environment:
+        APP_ENV: dev
+      volumes:
+        - ./symfony/:/var/www/symfony/
+      networks:
+        - symfony
 
 networks:
   symfony:
