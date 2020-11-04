@@ -4,17 +4,19 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: Dockerfile-nginx
+      dockerfile: build/nginx/Dockerfile
     volumes:
       - ./symfony/:/var/www/symfony/
     ports:
-      - 8001:80
+      - 80:80
     networks:
       - symfony
   php:
     build:
       context: .
-      dockerfile: Dockerfile-php
+      dockerfile: build/php/Dockerfile
+      args:
+        TIMEZONE: ${TIMEZONE}
     environment:
       APP_ENV: dev
     volumes:
@@ -23,14 +25,17 @@ services:
       - symfony
 
   mysql:
-    image: mysql
+    image: library/mysql:8.0.22
     command: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password' ]
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - 3306:3306
     volumes:
       - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 3306:3306
     networks:
       - symfony
 
