@@ -1,2 +1,8 @@
 # MasRecetas
-proyecto web  con Backend Symfony, Frontend con Angular, Base de datos MySql, Estructura deploy con Docker
+Proyecto web:
+  * Backend -> Symfony
+  * Frontend -> Angular
+  * Base de datos -> MySql
+  * Estructura deploy -> Docker
+ 
+## Despliegue del proyecto
