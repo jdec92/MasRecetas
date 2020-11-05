@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: build/nginx/Dockerfile
     volumes:
-      - ./symfony/:/var/www/MasRecetas/symfony/
+      - ./symfony/:/var/www/symfony/
     ports:
       - 80:80
     networks:
@@ -20,7 +20,7 @@ services:
     environment:
       APP_ENV: dev
     volumes:
-      - ./symfony/:/var/www/MasRecetas/symfony/
+      - ./symfony/:/var/www/symfony/
     networks:
       - symfony
 
