@@ -7,10 +7,13 @@ services:
       dockerfile: build/nginx/Dockerfile
     volumes:
       - ./symfony/:/var/www/symfony/
+      - ./angular/:/var/www/angular/
     ports:
       - 80:80
+      - 8080:8080
     networks:
       - symfony
+
   php:
     build:
       context: .
@@ -21,8 +24,20 @@ services:
       APP_ENV: dev
     volumes:
       - ./symfony/:/var/www/symfony/
+    ports:
+      - 9000:9001
     networks:
       - symfony
+
+  node:
+    build:
+      context: .
+      dockerfile: build/node/Dockerfile
+    volumes:
+      - ./angular/:/var/www/front:cached
+      - /var/www/angular/node_modules/
+    ports:
+      - 4200:4200
 
   db:
     image: mysql
