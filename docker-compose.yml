@@ -3,16 +3,18 @@ version: '3'
 services:
   nginx:
     build:
-      context: .
-      dockerfile: build/nginx/Dockerfile
+      context: ./build/nginx
     volumes:
-      - ./symfony/:/var/www/symfony/
-      - ./angular/:/var/www/angular/
+      - ./symfony:/var/www/symfony
+      - ./angular:/var/www/angular
+      - ./logs/nginx:/var/log/nginx:cached
+    environment:
+      APP_ENV: dev
+    depends_on:
+      - php
     ports:
       - 80:80
-      - 8080:8080
-    networks:
-      - symfony
+      - 443:443
 
   php:
     build:
@@ -24,18 +26,17 @@ services:
       APP_ENV: dev
     volumes:
       - ./symfony/:/var/www/symfony/
-    ports:
-      - 9000:9001
-    networks:
-      - symfony
+      - ./logs/symfony:/var/www/symfony/var/log:cached
+    expose:
+      - 9000
 
   node:
     build:
       context: .
       dockerfile: build/node/Dockerfile
     volumes:
-      - ./angular/:/var/www/front:cached
-      - /var/www/angular/node_modules/
+      - ./angular:/app
+      - /app/node_modules
     ports:
       - 4200:4200
 
@@ -51,12 +52,7 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - 3306:3306
-    networks:
-      - symfony
 
 volumes:
   my-db:
-
-networks:
-  symfony:
 

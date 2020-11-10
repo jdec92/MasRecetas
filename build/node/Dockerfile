@@ -1,13 +1,12 @@
-# This defines our starting point
 FROM node:latest
 
+# set working directory
+WORKDIR /app
+
+# install and cache app dependencies
+COPY angular/package.json /app/package.json
+RUN npm install
 RUN npm install -g @angular/cli
 
-ADD entrypoint.sh /var/www/entrypoint.sh
-RUN chmod +x /var/www/entrypoint.sh
-
-WORKDIR /var/www/angular/
-
-ENTRYPOINT ["/var/www/entrypoint.sh"]
-
-CMD ["npm","start"]
+# start app
+CMD ng serve --host 0.0.0.0
