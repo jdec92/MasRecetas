@@ -1,12 +1,13 @@
-version: '3'
+version: '3.8'
 
 services:
   nginx:
     build:
       context: ./build/nginx
+    restart: always
     volumes:
       - ./symfony:/var/www/symfony
-      - ./angular:/var/www/angular
+      - ./angular/dist:/var/www/angular
       - ./logs/nginx:/var/log/nginx:cached
     environment:
       APP_ENV: dev
@@ -35,8 +36,8 @@ services:
       context: .
       dockerfile: build/node/Dockerfile
     volumes:
-      - ./angular:/app
-      - /app/node_modules
+      - ./angular:/var/www/angular:cached
+      - /var/www/angular/node_modules/
     ports:
       - 4200:4200
 
