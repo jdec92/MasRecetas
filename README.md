@@ -38,8 +38,8 @@ Proyecto web:
 Finalmente salimos y ya tendremos desplegado el proyecto al completo
 
 Direcciones de acceso:
- * Angular https://localhots
- * Symfony https://localhosts/api/
+ * Angular http://localhost
+ * Symfony http://localhost/api/
  
 ## Despliegue del proyecto en otras ocasiones
 
