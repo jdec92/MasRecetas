@@ -45,7 +45,7 @@
 # Backup entities generated with doctrine:generate:entities command
 **/Entity/*~
 
-/logs
+logs
 # Embedded web-server pid file
 /.web-server-pid
 
