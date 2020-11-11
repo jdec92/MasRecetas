@@ -1,13 +1,15 @@
 FROM node:latest
 
-RUN npm install -g @angular/cli
-
-ADD build/node/entrypoint.sh /var/www/entrypoint.sh
-RUN chmod +x /var/www/entrypoint.sh
-# set working directory
 WORKDIR /var/www/angular/
 
-ENTRYPOINT ["/var/www/entrypoint.sh"]
+COPY angular/package.json angular/package-lock.json ./
 
+## Storing node modules on a separate layer will prevent unnecessary npm installs at each build
+RUN npm install
+RUN npm install -g @angular/cli
+
+COPY angular .
+
+RUN npm run build
 # start app
 CMD ["npm", "start"]
