@@ -8,9 +8,9 @@ import {IconsComponent} from '../../icons/icons.component';
 import {MapsComponent} from '../../maps/maps.component';
 import {NotificationsComponent} from '../../notifications/notifications.component';
 import {UpgradeComponent} from '../../upgrade/upgrade.component';
-import {WelcomeComponent} from "../welcome/components/welcome.component";
+import {WelcomeComponent} from "../../layouts/welcome/components/welcome.component";
 
-export const AdminLayoutRoutes: Routes = [
+export const GlobalLayoutRoutes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'user-profile', component: UserProfileComponent},

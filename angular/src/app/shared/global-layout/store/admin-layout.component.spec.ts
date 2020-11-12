@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FooterComponent } from './footer.component';
+import { GlobalLayoutComponent } from '../components/global-layout.component';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+describe('AdminLayoutComponent', () => {
+  let component: GlobalLayoutComponent;
+  let fixture: ComponentFixture<GlobalLayoutComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ]
+      declarations: [ GlobalLayoutComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(GlobalLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

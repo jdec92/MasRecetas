@@ -3,7 +3,7 @@ import { CommonModule, } from '@angular/common';
 import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminLayoutComponent } from './layouts/admin-layout/components/admin-layout.component';
+import { GlobalLayoutComponent } from './shared/global-layout/components/global-layout.component';
 
 const routes: Routes =[
   {
@@ -12,10 +12,10 @@ const routes: Routes =[
     pathMatch: 'full',
   }, {
     path: '',
-    component: AdminLayoutComponent,
+    component: GlobalLayoutComponent,
     children: [{
       path: '',
-      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+      loadChildren: './shared/global-layout/global-layout.module#GlobalLayoutModule'
     }]
   }
 ];

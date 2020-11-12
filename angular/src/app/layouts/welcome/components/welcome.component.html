@@ -23,45 +23,17 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" *ngFor="let bestRecipe of bestRecipes">
         <div class="card card-profile">
           <div class="card-avatar rounded">
-              <img class="img rounded" src="./assets/img/faces/marc.jpg"/>
+              <img class="img rounded" src="{{bestRecipe.img_path}}"/>
           </div>
           <div class="card-body">
-            <h4 class="card-title">Solomillo al Jerez</h4>
+            <h4 class="card-title">{{bestRecipe.title}}</h4>
             <p class="card-description">
-              Forma de preparación
+              {{bestRecipe.description}}
             </p>
-            <a href="javascript:void(0)" class="btn btn-round">Seguir leyendo</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-avatar rounded">
-            <img class="img rounded" src="./assets/img/faces/marc.jpg"/>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Solomillo al Jerez</h4>
-            <p class="card-description">
-              Forma de preparación
-            </p>
-            <a href="javascript:void(0)" class="btn btn-round">Seguir leyendo</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card card-profile">
-          <div class="card-avatar rounded">
-            <img class="img rounded" src="./assets/img/faces/marc.jpg"/>
-          </div>
-          <div class="card-body">
-            <h4 class="card-title">Solomillo al Jerez</h4>
-            <p class="card-description">
-              Forma de preparación
-            </p>
-            <a href="javascript:void(0)" class="btn btn-round">Seguir leyendo</a>
+            <a href="{{bestRecipe.id}}" class="btn btn-round">Seguir leyendo</a>
           </div>
         </div>
       </div>

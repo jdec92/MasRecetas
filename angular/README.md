@@ -98,7 +98,7 @@ material-dashboard-angular
 │   │   ├── app.module.ts
 │   │   ├── app.routing.ts
 │   │   ├── components
-│   │   │   ├── components.module.ts
+│   │   │   ├── shared.module.ts
 │   │   │   ├── footer
 │   │   │   │   ├── footer.component.css
 │   │   │   │   ├── footer.component.html
@@ -129,9 +129,9 @@ material-dashboard-angular
 │   │   │       ├── admin-layout.component.html
 │   │   │       ├── admin-layout.component.scss
 │   │   │       ├── admin-layout.component.spec.ts
-│   │   │       ├── admin-layout.component.ts
-│   │   │       ├── admin-layout.module.ts
-│   │   │       └── admin-layout.routing.ts
+│   │   │       ├── global-layout.component.ts
+│   │   │       ├── global-layout.module.ts
+│   │   │       └── global-layout.routing.ts
 │   │   ├── maps
 │   │   │   ├── maps.component.css
 │   │   │   ├── maps.component.html
