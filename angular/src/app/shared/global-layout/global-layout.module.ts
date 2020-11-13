@@ -18,6 +18,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import {WelcomeComponent} from "../../layouts/welcome/components/welcome.component";
 import {GlobalLayoutRoutes} from "./global-layout.routing";
+import {AddRecipeComponent} from '../../layouts/add-recipe/components/add-recipe.component';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import {GlobalLayoutRoutes} from "./global-layout.routing";
   ],
   declarations: [
     WelcomeComponent,
+    AddRecipeComponent,
     DashboardComponent,
     UserProfileComponent,
     TableListComponent,

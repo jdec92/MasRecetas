@@ -31,7 +31,6 @@ import { GlobalLayoutComponent } from './shared/global-layout/components/global-
   declarations: [
     AppComponent,
     GlobalLayoutComponent,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

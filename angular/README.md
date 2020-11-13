@@ -160,8 +160,8 @@ material-dashboard-angular
 │   │   └── user-profile
 │   │       ├── user-profile.component.css
 │   │       ├── user-profile.component.html
-│   │       ├── user-profile.component.spec.ts
-│   │       └── user-profile.component.ts
+│   │       ├── add-recipe.component.spec.ts
+│   │       └── not-found.component.ts
 │   ├── assets
 │   │   ├── css
 │   │   │   └── demo.css
