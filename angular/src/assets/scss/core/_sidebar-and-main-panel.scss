@@ -42,6 +42,15 @@
             position: absolute;
         }
     }
+
+    .logo-text{
+      max-height: 30px;
+      margin-left: 40px;
+
+      img{
+        width: 140px;
+      }
+    }
     .sidebar-wrapper{
         position: relative;
         height: calc(100vh - 75px);

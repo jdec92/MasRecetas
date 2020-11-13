@@ -8,10 +8,9 @@ declare interface Recipe {
 }
 
 export const RECIPES: Recipe[] = [
-  { id:'1', img_path: './assets/img/faces/marc.jpg', title: 'Solomillo al Jerez',  description: '1.- Comenzamos poniendo salpimentando...'},
-  { id:'2', img_path: './assets/img/faces/marc.jpg', title: 'Brocoli al Curry',  description: '1.- Comenzamos poniendo salpimentando...'},
-  { id:'3', img_path: './assets/img/faces/marc.jpg', title: 'Salmón a la Naranja',  description: '1.- Comenzamos poniendo salpimentando...'},
-
+  { id:'1', img_path: './assets/img/recipes/001.jpg', title: 'Solomillo al Jerez',  description: '1.- Comenzamos poniendo salpimentando...'},
+  { id:'2', img_path: './assets/img/recipes/002.jpg', title: 'Brocoli al Curry',  description: '1.- Comenzamos poniendo salpimentando...'},
+  { id:'3', img_path: './assets/img/default.jpg', title: 'Salmón a la Naranja',  description: '1.- Comenzamos poniendo salpimentando...'},
 ];
 
 @Component({
