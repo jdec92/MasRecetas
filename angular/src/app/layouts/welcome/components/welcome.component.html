@@ -1,0 +1,49 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row pb-4">
+      <div class="col-md-6 col-sm-6">
+        <a href="/add">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">playlist_add</i>
+              </div>
+              <h3 class="card-title text-center">Crear Receta</h3>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">person_search</i>
+            </div>
+            <h3 class="card-title text-center">Buscar Recetas</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let bestRecipe of bestRecipes">
+        <div class="card card-product" data-count="6">
+          <div data-header-animation="true" class="card-header card-header-image">
+            <a href="#pablo">
+              <img src="{{bestRecipe.img_path}}" class="img">
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#pablo">{{bestRecipe.title}}</a>
+            </h4>
+            <div class="card-description"> {{bestRecipe.description}}
+            </div>
+          </div>
+          <div class="card-footer justify-content-center">
+            <a href="{{bestRecipe.id}}" class="btn btn-round">Seguir leyendo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
