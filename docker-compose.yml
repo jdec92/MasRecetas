@@ -33,8 +33,11 @@ services:
       - ./logs/symfony:/var/www/symfony/var/log:cached
     expose:
       - 9000
+    extra_hosts:
+      - docker.host:127.0.0.1
     networks:
       - masrecetas
+
 
   node:
     build:

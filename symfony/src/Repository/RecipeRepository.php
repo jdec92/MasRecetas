@@ -19,32 +19,12 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    // /**
-    //  * @return Recipe[] Returns an array of Recipe objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function ultimateRecipe($numberResult): array
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('r.id', 'DESC')
+            ->setMaxResults($numberResult)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getArrayResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Recipe
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

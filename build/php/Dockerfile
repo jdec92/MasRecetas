@@ -1,7 +1,11 @@
 FROM php:fpm-stretch
 ARG TIMEZONE
 
-COPY build/php/php.ini /usr/local/etc/php/conf.d/docker-php-config.ini
+RUN pecl install xdebug
+RUN docker-php-ext-enable xdebug
+
+COPY build/php/php.ini /usr/local/etc/php/conf.d/
+COPY build/php/xdebug.ini  /usr/local/etc/php/conf.d/
 
 RUN apt-get update && apt-get install -y \
     gnupg \
