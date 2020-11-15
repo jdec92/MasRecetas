@@ -25,9 +25,9 @@ class RecipeController extends AbstractController
         if($findRecipe == null) {
             $entityManager->persist($recipe);
             $entityManager->flush();
-            return new Response($serializer->serialize($recipe,'json'));
+            return new Response($recipe->getId());
         }else{
-            return new Response($serializer->serialize($findRecipe,'json'));
+            return new Response($findRecipe->getId());
         }
         throw new BadRequestHttpException($content);
     }

@@ -12,26 +12,22 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 
 class IngredientController extends AbstractController
 {
-    public function create(IngredientRepository $ingredientRepository, EntityManagerInterface $entityManager,$title) : Response {
-        $serializer = new Serializer([new ObjectNormalizer()],[new JsonEncoder()]);
+    public function create(IngredientRepository $ingredientRepository, EntityManagerInterface $entityManager,$content) : Response {
+        $ingredient = $ingredientRepository->findOneBy(['title' => $content]);
 
-        $ingredient = $ingredientRepository->findOneBy(['title' => $title]);
         if($ingredient == null) {
             $ingredient = new Ingredient();
-            $ingredient->setTitle($title);
+            $ingredient->setTitle($content);
             $entityManager->persist($ingredient);
             $entityManager->flush();
-            return new Response($serializer->serialize($ingredient,'json'));
+            return new Response($ingredient->getId());
         }else{
-            return new Response($serializer->serialize($ingredient,'json'));
+            return new Response($ingredient->getId());
         }
-        throw new BadRequestHttpException($title);
+        throw new BadRequestHttpException($content);
     }
 }
