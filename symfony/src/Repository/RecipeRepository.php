@@ -19,7 +19,16 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    public function ultimateRecipe($numberResult): array
+    public function recipeCategory(): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r.category')
+            ->distinct()
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function recipeUltimate($numberResult): array
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.id', 'DESC')

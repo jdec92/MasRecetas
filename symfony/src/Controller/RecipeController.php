@@ -46,9 +46,24 @@ class RecipeController extends AbstractController
         throw new BadRequestHttpException($content);
     }
 
+    /*public function get(RecipeRepository $recipeRepository,$content) : Response {
+        $serializer = new Serializer([new ObjectNormalizer()],[new JsonEncoder()]);
+
+        $recipe = $recipeRepository->findOneBy(['id' => json_decode($content)]);
+
+        if($recipe != null) {
+            return new JsonResponse($serializer->serialize($recipe,'json'));
+        }
+        throw new BadRequestHttpException($content);
+    }*/
+
+    public function getCategory(RecipeRepository $recipeRepository) : Response {
+        return new JsonResponse($recipeRepository->recipeCategory());
+    }
+
     public function getUltimateRecipes($number,RecipeRepository $recipeRepository) : Response {
         $limit = (int) $number;
-        $recipes = $recipeRepository->ultimateRecipe($limit);
+        $recipes = $recipeRepository->recipeUltimate($limit);
         return new JsonResponse($recipes);
     }
 }

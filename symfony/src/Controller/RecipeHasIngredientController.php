@@ -72,6 +72,15 @@ class RecipeHasIngredientController extends AbstractController
             return new BadRequestHttpException("Database error");
         }
     }
+/*
+    public function get($recipe_id): Response
+    {
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+
+        //$response = $this->callController("App\Controller\RecipeController::get", $recipe_id);
+
+        return new Response("OK");
+    }*/
 
     public function callController(string $controller, string $content): ?int
     {
@@ -79,6 +88,6 @@ class RecipeHasIngredientController extends AbstractController
         if ($response->getStatusCode() !== 200) {
             return null;
         }
-        return (int)$response->getContent();
+        return $response->getContent();
     }
 }

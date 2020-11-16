@@ -12,6 +12,16 @@ edit_recipe:
     controller: App\Controller\RecipeHasIngredientController::edit
     methods: [POST]
 
+show_recipe:
+    path: /api/show/{recipe_id}
+    controller: App\Controller\RecipeHasIngredientController::get
+    methods: [GET]
+
+show_category:
+    path: /api/category
+    controller: App\Controller\RecipeController::getCategory
+    methods: [GET]
+
 show_ultimate_recipe:
     path: /api/ultimate/recipes/{number}
     controller: App\Controller\RecipeController::getUltimateRecipes
