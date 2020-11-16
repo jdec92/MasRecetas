@@ -7,6 +7,11 @@ add_recipe:
     controller: App\Controller\RecipeHasIngredientController::create
     methods: [POST]
 
+edit_recipe:
+    path: /api/edit
+    controller: App\Controller\RecipeHasIngredientController::edit
+    methods: [POST]
+
 show_ultimate_recipe:
     path: /api/ultimate/recipes/{number}
     controller: App\Controller\RecipeController::getUltimateRecipes
