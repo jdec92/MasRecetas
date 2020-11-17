@@ -1,7 +1,3 @@
-index:
-    path: /api/
-    controller: App\Controller\DefaultController::index
-
 add_recipe:
     path: /api/add
     controller: App\Controller\RecipeHasIngredientController::create
@@ -11,6 +7,16 @@ edit_recipe:
     path: /api/edit
     controller: App\Controller\RecipeHasIngredientController::edit
     methods: [POST]
+
+show_recipe:
+    path: /api/show/{recipe_id}
+    controller: App\Controller\RecipeHasIngredientController::getRecipeHasIngredient
+    methods: [GET]
+
+show_category:
+    path: /api/category
+    controller: App\Controller\RecipeController::getCategory
+    methods: [GET]
 
 show_ultimate_recipe:
     path: /api/ultimate/recipes/{number}

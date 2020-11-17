@@ -4,6 +4,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Ingredient;
+use App\Entity\Recipe;
 use App\Entity\RecipeHasIngredient;
 use App\Repository\IngredientRepository;
 use App\Repository\RecipeHasIngredientRepository;
@@ -25,20 +27,12 @@ class RecipeHasIngredientController extends AbstractController
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 
         $content = $request->getContent();
-        $ingredients = json_decode($request->getContent())->ingredients;
+        $ingredients = json_decode($content)->ingredients;
 
-        $recipeId = $this->callController("App\Controller\RecipeController::create", $content);
-        $recipe = $recipeRepository->findOneBy(['id' => $recipeId]);
-
+        $recipe = $this->getRecipe($recipeRepository, "App\Controller\RecipeController::create", $content);
         try {
             foreach ($ingredients as &$object) {
-                $recipeHasIngredient = $serializer->deserialize(json_encode($object), RecipeHasIngredient::class, 'json');
-
-                $ingredientId = $this->callController("App\Controller\IngredientController::create", $object->title);
-                $ingredient = $ingredientRepository->findOneBy(['id' => $ingredientId]);
-
-                $recipeHasIngredient->setRecipe($recipe);
-                $recipeHasIngredient->setIngredient($ingredient);
+                $recipeHasIngredient = $this->createRecipeHasIngredient($ingredientRepository, $recipe, $object, $serializer);
                 $entityManager->persist($recipeHasIngredient);
                 $entityManager->flush();
             }
@@ -48,22 +42,29 @@ class RecipeHasIngredientController extends AbstractController
         }
     }
 
-    public function edit(RecipeHasIngredientRepository $recipeHasIngredientRepository, EntityManagerInterface $entityManager, Request $request): Response
+    public function edit(RecipeRepository $recipeRepository, IngredientRepository $ingredientRepository, RecipeHasIngredientRepository $recipeHasIngredientRepository, EntityManagerInterface $entityManager, Request $request): Response
     {
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
 
         $content = $request->getContent();
-        $ingredients = json_decode($request->getContent())->ingredients;
+        $ingredients = json_decode($content)->ingredients;
 
-        $recipeId = $this->callController("App\Controller\RecipeController::edit", $content);
-
+        $recipe = $this->getRecipe($recipeRepository, "App\Controller\RecipeController::edit", $content);
         try {
             foreach ($ingredients as &$object) {
-                $ingredientId = $this->callController("App\Controller\IngredientController::edit", json_encode($object));
-
-                $recipeHasIngredient = $recipeHasIngredientRepository->findOneBy(['recipe' => $recipeId, 'ingredient' => $ingredientId]);
-                $serializer->deserialize(json_encode($object), RecipeHasIngredient::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $recipeHasIngredient]);
-
+                $recipeHasIngredient = null;
+                if (property_exists($object, 'id')) {
+                    foreach ($recipe->getRecipesHasIngredient()->getValues() as &$iteratorRecipeHasIngredient) {
+                        if ($object->id == $iteratorRecipeHasIngredient->getIngredient()->getId()) {
+                            $recipeHasIngredient = $iteratorRecipeHasIngredient;
+                            $ingredient = $recipeHasIngredient->getIngredient();
+                            $serializer->deserialize(json_encode($object), RecipeHasIngredient::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $recipeHasIngredient]);
+                            $serializer->deserialize(json_encode($object), Ingredient::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $ingredient]);
+                        }
+                    }
+                } else {
+                    $recipeHasIngredient = $this->createRecipeHasIngredient($ingredientRepository, $recipe, $object, $serializer);
+                }
                 $entityManager->persist($recipeHasIngredient);
                 $entityManager->flush();
             }
@@ -73,12 +74,48 @@ class RecipeHasIngredientController extends AbstractController
         }
     }
 
-    public function callController(string $controller, string $content): ?int
+    public function getRecipeHasIngredient(RecipeRepository $recipeRepository, $recipe_id): Response
+    {
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+        $recipe = $recipeRepository->findOneBy(['id' => $recipe_id]);
+        $ingredients = array();
+        foreach ($recipe->getRecipesHasIngredient()->getValues() as &$recipeHasIngredient) {
+            array_push($ingredients, new \App\Model\Ingredient($recipeHasIngredient));
+        }
+        $response = new Response();
+        $response->headers->set("Content-Type", 'application/json');
+        $response->setContent($serializer->serialize(new \App\Model\Recipe($recipe, $ingredients), 'json'));
+        return $response;
+    }
+
+    private function createRecipeHasIngredient(IngredientRepository $ingredientRepository, Recipe $recipe, $object, $serializer): RecipeHasIngredient
+    {
+        $ingredient = $this->getIngredient($ingredientRepository, "App\Controller\IngredientController::create", $object->title);
+
+        $recipeHasIngredient = $serializer->deserialize(json_encode($object), RecipeHasIngredient::class, 'json');
+        $recipeHasIngredient->setRecipe($recipe);
+        $recipeHasIngredient->setIngredient($ingredient);
+        return $recipeHasIngredient;
+    }
+
+    private function getRecipe(RecipeRepository $recipeRepository, string $callController, string $content): ?Recipe
+    {
+        $recipeId = $this->callController($callController, $content);
+        return $recipeRepository->findOneBy(['id' => $recipeId]);
+    }
+
+    private function getIngredient(IngredientRepository $ingredientRepository, string $callController, string $content): ?Ingredient
+    {
+        $ingredientId = $this->callController($callController, $content);
+        return $ingredientRepository->findOneBy(['id' => $ingredientId]);
+    }
+
+    private function callController(string $controller, string $content): ?string
     {
         $response = $this->forward($controller, ['content' => $content]);
         if ($response->getStatusCode() !== 200) {
             return null;
         }
-        return (int)$response->getContent();
+        return $response->getContent();
     }
 }
