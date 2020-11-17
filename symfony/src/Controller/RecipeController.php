@@ -18,27 +18,29 @@ use Symfony\Component\Serializer\Serializer;
 
 class RecipeController extends AbstractController
 {
-    public function create(RecipeRepository  $recipeRepository, EntityManagerInterface $entityManager,$content) : Response {
-        $serializer = new Serializer([new ObjectNormalizer()],[new JsonEncoder()]);
-        $recipe =$serializer->deserialize($content, Recipe::class,'json');
+    public function create(RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, $content): Response
+    {
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
+        $recipe = $serializer->deserialize($content, Recipe::class, 'json');
 
         $findRecipe = $recipeRepository->findOneBy(['title' => $recipe->getTitle()]);
-        if($findRecipe == null) {
+        if ($findRecipe == null) {
             $entityManager->persist($recipe);
             $entityManager->flush();
             return new Response($recipe->getId());
-        }else{
+        } else {
             return new Response($findRecipe->getId());
         }
         throw new BadRequestHttpException($content);
     }
 
-    public function edit(RecipeRepository  $recipeRepository, EntityManagerInterface $entityManager,$content) : Response {
-        $serializer = new Serializer([new ObjectNormalizer()],[new JsonEncoder()]);
+    public function edit(RecipeRepository $recipeRepository, EntityManagerInterface $entityManager, $content): Response
+    {
+        $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
         $recipe = $recipeRepository->findOneBy(['id' => json_decode($content)->id]);
-        $serializer->deserialize($content, Recipe::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $recipe]);
+        $serializer->deserialize($content, Recipe::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $recipe]);
 
-        if($recipe != null) {
+        if ($recipe != null) {
             $entityManager->persist($recipe);
             $entityManager->flush();
             return new Response($recipe->getId());
@@ -46,24 +48,13 @@ class RecipeController extends AbstractController
         throw new BadRequestHttpException($content);
     }
 
-    /*public function get(RecipeRepository $recipeRepository,$content) : Response {
-        $serializer = new Serializer([new ObjectNormalizer()],[new JsonEncoder()]);
-
-        $recipe = $recipeRepository->findOneBy(['id' => json_decode($content)]);
-
-        if($recipe != null) {
-            return new JsonResponse($serializer->serialize($recipe,'json'));
-        }
-        throw new BadRequestHttpException($content);
-    }*/
-
-    public function getCategory(RecipeRepository $recipeRepository) : Response {
+    public function getCategory(RecipeRepository $recipeRepository): Response
+    {
         return new JsonResponse($recipeRepository->recipeCategory());
     }
 
-    public function getUltimateRecipes($number,RecipeRepository $recipeRepository) : Response {
-        $limit = (int) $number;
-        $recipes = $recipeRepository->recipeUltimate($limit);
-        return new JsonResponse($recipes);
+    public function getUltimateRecipes($number, RecipeRepository $recipeRepository): Response
+    {
+        return new JsonResponse($recipeRepository->recipeUltimate((int) $number));
     }
 }
