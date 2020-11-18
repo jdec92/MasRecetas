@@ -13,6 +13,8 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { GlobalLayoutComponent } from './shared/global-layout/components/global-layout.component';
+import {WelcomeService} from './layouts/welcome/service/welcome.service';
+import {BrowserModule} from '@angular/platform-browser';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { GlobalLayoutComponent } from './shared/global-layout/components/global-
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserModule,
     HttpClientModule,
     SharedModule,
     RouterModule,
@@ -32,7 +35,10 @@ import { GlobalLayoutComponent } from './shared/global-layout/components/global-
     AppComponent,
     GlobalLayoutComponent,
   ],
-  providers: [],
+  providers: [
+    WelcomeService,
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
