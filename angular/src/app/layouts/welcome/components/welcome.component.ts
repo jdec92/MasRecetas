@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WelcomeService } from '../service/welcome.service';
 
 declare interface Recipe {
   id: string;
@@ -21,9 +22,16 @@ export const RECIPES: Recipe[] = [
 export class WelcomeComponent implements OnInit {
   bestRecipes: any[];
 
-  constructor() { }
+  constructor(public service: WelcomeService) { }
 
   ngOnInit() {
+    this.service.recipesUltimate(3).subscribe(data => {
+      console.log(data);
+        this.bestRecipes = data;
+      },
+      err => {
+        console.log(err);
+      });
     this.bestRecipes = RECIPES.filter(bestRecipe => bestRecipe);
   }
 
