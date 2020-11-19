@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { ROUTES } from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { Router } from '@angular/router';
+import {GlobalConstants} from '../../common/global-constants';
+import {RouteInfo} from '../../models/routeInfo';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    private listTitles: any[];
+    private listTitles: RouteInfo[];
     location: Location;
       mobile_menu_visible: any = 0;
     private toggleButton: any;
@@ -21,7 +22,7 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(){
-      this.listTitles = ROUTES.filter(listTitle => listTitle);
+      this.listTitles = GlobalConstants.getRouteInfo;
       const navbar: HTMLElement = this.element.nativeElement;
       this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
       this.router.events.subscribe((event) => {
@@ -114,7 +115,7 @@ export class NavbarComponent implements OnInit {
 
       for(var item = 0; item < this.listTitles.length; item++){
           if(this.listTitles[item].path === path){
-              return this.listTitles[item].title;
+              return this.listTitles[item].path;
           }
       }
       return "Bienvenido a MasRecetas";

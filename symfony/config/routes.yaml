@@ -22,3 +22,8 @@ show_ultimate_recipe:
     path: /api/ultimate/recipes/{number}
     controller: App\Controller\RecipeController::getUltimateRecipes
     methods: [GET]
+
+upload_file:
+    path: /api/upload/file
+    controller: App\Controller\RecipeController::uploadFile
+    methods: [POST]

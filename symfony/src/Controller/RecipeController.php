@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -56,5 +57,13 @@ class RecipeController extends AbstractController
     public function getUltimateRecipes($number, RecipeRepository $recipeRepository): Response
     {
         return new JsonResponse($recipeRepository->recipeUltimate((int) $number));
+    }
+
+    public function uploadFile(Request $request): Response{
+        $data = $request->files->get('image');
+        $fileName = date("Y-m-d_h-i-s")."_".$data->getClientOriginalName();
+        $data->move($this->getParameter('path_project').'/uploads',$fileName);
+
+        return new Response($this->getParameter('path_upload_file')."/".$fileName);
     }
 }

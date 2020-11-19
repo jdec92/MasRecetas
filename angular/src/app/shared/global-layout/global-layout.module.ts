@@ -1,24 +1,25 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from '../../dashboard/dashboard.component';
-import { UserProfileComponent } from '../../user-profile/user-profile.component';
-import { TableListComponent } from '../../table-list/table-list.component';
-import { TypographyComponent } from '../../typography/typography.component';
-import { IconsComponent } from '../../icons/icons.component';
-import { MapsComponent } from '../../maps/maps.component';
-import { NotificationsComponent } from '../../notifications/notifications.component';
-import { UpgradeComponent } from '../../upgrade/upgrade.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {DashboardComponent} from '../../dashboard/dashboard.component';
+import {UserProfileComponent} from '../../user-profile/user-profile.component';
+import {TableListComponent} from '../../table-list/table-list.component';
+import {TypographyComponent} from '../../typography/typography.component';
+import {IconsComponent} from '../../icons/icons.component';
+import {MapsComponent} from '../../maps/maps.component';
+import {NotificationsComponent} from '../../notifications/notifications.component';
+import {UpgradeComponent} from '../../upgrade/upgrade.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-import {WelcomeComponent} from "../../layouts/welcome/components/welcome.component";
-import {GlobalLayoutRoutes} from "./global-layout.routing";
+import {WelcomeComponent} from '../../layouts/welcome/components/welcome.component';
+import {GlobalLayoutRoutes} from './global-layout.routing';
 import {AddRecipeComponent} from '../../layouts/add-recipe/components/add-recipe.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {AddRecipeComponent} from '../../layouts/add-recipe/components/add-recipe
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
+    MatStepperModule,
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
@@ -47,4 +49,5 @@ import {AddRecipeComponent} from '../../layouts/add-recipe/components/add-recipe
   ]
 })
 
-export class GlobalLayoutModule {}
+export class GlobalLayoutModule {
+}

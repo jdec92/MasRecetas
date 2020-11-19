@@ -57,7 +57,7 @@ export class GlobalLayoutComponent implements OnInit {
 
       let $sidebar = $('.sidebar');
       let $sidebar_responsive = $('body > .navbar-collapse');
-      var new_color = 'green';
+      var new_color = 'danger';
 
       if($sidebar.length !== 0){
            $sidebar.attr('data-color', new_color);

@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row pb-4">
       <div class="col-md-6 col-sm-6">
-        <a href="/add">
+        <a href="{{urlAddRecipe}}">
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
@@ -25,22 +25,22 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-md-4" *ngFor="let bestRecipe of bestRecipes">
+      <div class="col-md-4" *ngFor="let recipe of bestRecipes">
         <div class="card card-product" data-count="6">
           <div data-header-animation="true" class="card-header card-header-image">
-            <a href="#pablo">
-              <img src="{{bestRecipe.img_path}}" class="img">
+            <a href="{{urlRecipe}}{{recipe.id}}">
+              <img src="{{recipe.image_path}}" class="img">
             </a>
           </div>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#pablo">{{bestRecipe.title}}</a>
+              <a href="{{urlRecipe}}{{recipe.id}}">{{recipe.title}}</a>
             </h4>
-            <div class="card-description"> {{bestRecipe.description}}
+            <div class="card-description"> {{recipe.preparation}}
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="{{bestRecipe.id}}" class="btn btn-round">Seguir leyendo</a>
+            <a href="{{urlRecipe}}{{recipe.id}}" class="btn btn-round">Seguir leyendo</a>
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ services:
       context: .
       dockerfile: build/node/Dockerfile
     volumes:
-      - ./angular:/var/www/angular:cached
+      - ./angular:/var/www/angular:cached      
       - /var/www/angular/node_modules/
     ports:
       - 4200:4200
