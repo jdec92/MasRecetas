@@ -62,8 +62,15 @@ class RecipeController extends AbstractController
     public function uploadFile(Request $request): Response{
         $data = $request->files->get('image');
         $fileName = date("Y-m-d_h-i-s")."_".$data->getClientOriginalName();
-        $data->move($this->getParameter('path_project').'/uploads',$fileName);
+        $data->move($this->getParameter('path_upload_file'),$fileName);
 
-        return new Response($this->getParameter('path_upload_file')."/".$fileName);
+        return new Response("/assets/uploads/".$fileName);
+    }
+
+    public function remoteFile(Request $request): Response{
+        if(unlink($request->getContent())){
+            return new Response("ok");
+        }
+        throw new BadRequestHttpException("error");
     }
 }

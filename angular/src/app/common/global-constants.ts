@@ -5,6 +5,8 @@ export class GlobalConstants {
   public static apiUrl: string = 'http://localhost/api';
   public static apiEditRecipe: string = '/edit';
   public static showUltimateRecipe: string = '/ultimate/recipes/';
+  public static uploadFile: string = '/upload/file';
+  public static removeFile: string = '/remove/file';
 
   public static routeInfoSearch: RouteInfo = {
     path: '/search', title: 'Buscar Recetas', icon: 'person_search'

@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {Select} from '../../../models/select';
 import {HttpClient} from '@angular/common/http';
+import {AddRecipeService} from '../service/add-recipe.service';
 
 @Component({
   selector: 'app-add-recipe',
@@ -21,7 +22,10 @@ export class AddRecipeComponent implements OnInit {
   uploadImage: Select = {value: 'Receta sin imagen', viewValue: './assets/img/default.jpg'};
 
 
-  constructor(private formBuilder: FormBuilder, private request: HttpClient) {
+  constructor(
+    public addRecipeService: AddRecipeService,
+    private formBuilder: FormBuilder,
+    private request: HttpClient) {
   }
 
   ngOnInit() {
@@ -37,28 +41,22 @@ export class AddRecipeComponent implements OnInit {
   onClick() {
     const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
     fileUpload.onchange = () => {
-      const file = fileUpload.files[0];
-      this.uploadFile(file);
+      $('.fileinput-new').hide();
+      $('.fileinput-exists').show();
+      this.addRecipeService.uploadFile(fileUpload.files[0]).subscribe(
+      name => {
+
+      },
+      error => {
+          console.log(error);
+      });
     };
     fileUpload.click();
   }
 
-  cancelFile(file: any) {
-    file.sub.unsubscribe();
-  }
-
-  retryFile(file: any) {
-    this.uploadFile(file);
-    file.canRetry = false;
-  }
-
-  private uploadFile(file: any) {
-    const fd = new FormData();
-    fd.append('image', file);
-
-    this.request.post(GlobalConstants.apiUrl + '/upload/file', fd, {
-      headers: { 'X-Requested-With' : 'XMLHttpRequest'}
-    }).subscribe(
+  removeFile() {
+    const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
+    this.request.post(GlobalConstants.apiUrl + '/remove/file', fileUpload.files[0].name).subscribe(
       (event: any) => {
         console.log(event);
       }
