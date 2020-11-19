@@ -11,8 +11,8 @@ import {GlobalConstants} from '../../../common/global-constants';
 export class WelcomeComponent implements OnInit {
 
   bestRecipes: Recipe[];
-  urlAddRecipe: string = GlobalConstants.addRecipe;
-  urlRecipe: string = GlobalConstants.showRecipe;
+  urlAddRecipe: string = GlobalConstants.routeInfoAddRecipe.path;
+  urlRecipe: string = GlobalConstants.routeInfoRecipe.path;
 
   constructor(public service: WelcomeService) {
   }

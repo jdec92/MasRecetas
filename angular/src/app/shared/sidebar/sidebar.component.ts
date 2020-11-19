@@ -1,17 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
-declare const $: any;
-declare interface RouteInfo {
-    path: string;
-    title: string;
-    icon: string;
-    class: string;
-}
-export const ROUTES: RouteInfo[] = [
-    { path: '/category', title: 'Categorias Recetas',  icon: 'dashboard', class: '' },
-    { path: '/search', title: 'Buscar Recetas',  icon:'person_search', class: '' },
-    { path: '/add', title: 'Crear Receta',  icon:'playlist_add', class: '' },
-];
+import {Component, OnInit} from '@angular/core';
+import {GlobalConstants} from '../../common/global-constants';
+import {RouteInfo} from '../../models/routeInfo';
 
 @Component({
   selector: 'app-sidebar',
@@ -19,17 +8,18 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  menuItems: any[];
+  menuItems: RouteInfo[];
 
   constructor() { }
 
   ngOnInit() {
-    this.menuItems = ROUTES.filter(menuItem => menuItem);
+    this.menuItems = GlobalConstants.getRouteInfo;
   }
+
   isMobileMenu() {
-      if ($(window).width() > 991) {
-          return false;
-      }
-      return true;
+    if ($(window).width() > 991) {
+      return false;
+    }
+    return true;
   };
 }
