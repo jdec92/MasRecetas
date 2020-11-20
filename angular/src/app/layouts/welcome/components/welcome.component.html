@@ -28,19 +28,20 @@
       <div class="col-md-4" *ngFor="let recipe of bestRecipes">
         <div class="card card-product" data-count="6">
           <div data-header-animation="true" class="card-header card-header-image">
-            <a href="{{urlRecipe}}{{recipe.id}}">
-              <img src="{{recipe.image_path}}" class="img">
+            <a href="{{urlRecipe}}/{{recipe.id}}">
+              <img *ngIf="recipe.image_path" src="{{recipe.image_path}}" alt="{{recipe.title}}" class="img">
+              <img *ngIf="!recipe.image_path" src="{{imageDefault.viewValue}}" alt="{{imageDefault.value}}" class="img">
             </a>
           </div>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="{{urlRecipe}}{{recipe.id}}">{{recipe.title}}</a>
+              <a href="{{urlRecipe}}/{{recipe.id}}">{{recipe.title}}</a>
             </h4>
             <div class="card-description"> {{recipe.preparation}}
             </div>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="{{urlRecipe}}{{recipe.id}}" class="btn btn-round">Seguir leyendo</a>
+            <a href="{{urlRecipe}}/{{recipe.id}}" class="btn btn-round">Seguir leyendo</a>
           </div>
         </div>
       </div>

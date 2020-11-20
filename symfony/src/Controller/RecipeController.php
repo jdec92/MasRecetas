@@ -62,15 +62,16 @@ class RecipeController extends AbstractController
     public function uploadFile(Request $request): Response{
         $data = $request->files->get('image');
         $fileName = date("Y-m-d_h-i-s")."_".$data->getClientOriginalName();
-        $data->move($this->getParameter('path_upload_file'),$fileName);
+        $data->move($this->getParameter('path_project').''.$this->getParameter('path_upload_file'),$fileName);
 
-        return new Response("/assets/uploads/".$fileName);
+        return new JsonResponse($this->getParameter('path_image_front').'/'.$fileName);
     }
 
-    public function remoteFile(Request $request): Response{
-        if(unlink($request->getContent())){
-            return new Response("ok");
+    public function removeFile(Request $request): Response{
+        $path = str_replace($this->getParameter('path_image_front'),$this->getParameter('path_upload_file'), $request->getContent());
+        if(unlink($this->getParameter('path_project').''.$path)){
+            return new JsonResponse("ok");
         }
-        throw new BadRequestHttpException("error");
+        throw new BadRequestHttpException("Error al borrar el archivo ".$path);
     }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {WelcomeService} from '../service/welcome.service';
 import {Recipe} from '../../../models/recipe';
 import {GlobalConstants} from '../../../common/global-constants';
+import {Select} from '../../../models/select';
 
 @Component({
   selector: 'app-welcome',
@@ -13,6 +14,7 @@ export class WelcomeComponent implements OnInit {
   bestRecipes: Recipe[];
   urlAddRecipe: string = GlobalConstants.routeInfoAddRecipe.path;
   urlRecipe: string = GlobalConstants.routeInfoRecipe.path;
+  imageDefault: Select = GlobalConstants.imageDefault;
 
   constructor(public service: WelcomeService) {
   }

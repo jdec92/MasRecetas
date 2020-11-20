@@ -13,6 +13,6 @@ export class WelcomeService {
   }
 
   recipesUltimate(numberItems: number): Observable<any> {
-    return  this.request.get<Recipe[]>(GlobalConstants.apiUrl + '/ultimate/recipes/' + numberItems);
+    return  this.request.get<Recipe[]>(GlobalConstants.apiUrl + GlobalConstants.showUltimateRecipe + numberItems);
   }
 }

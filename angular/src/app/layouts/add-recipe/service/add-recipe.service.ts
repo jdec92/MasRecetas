@@ -11,9 +11,14 @@ export class AddRecipeService {
   constructor(private request: HttpClient) {
   }
 
-  uploadFile(file: File): Observable<string> {
+  uploadFile(file: File): Observable<any> {
     const fd = new FormData();
     fd.append('image', file);
     return this.request.post<string>(GlobalConstants.apiUrl + GlobalConstants.uploadFile, fd);
   }
+
+  removeFile(file: File): Observable<any> {
+    return this.request.post<string>(GlobalConstants.apiUrl + GlobalConstants.removeFile, file.name);
+  }
+
 }

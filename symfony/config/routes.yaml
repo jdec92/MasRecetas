@@ -29,6 +29,6 @@ upload_file:
     methods: [POST]
 
 remote_file:
-    path: /api/remote/file
-    controller: App\Controller\RecipeController::remoteFile
+    path: /api/remove/file
+    controller: App\Controller\RecipeController::removeFile
     methods: [POST]

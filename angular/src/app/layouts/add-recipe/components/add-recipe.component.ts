@@ -3,7 +3,6 @@ import {GlobalConstants} from '../../../common/global-constants';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import {Select} from '../../../models/select';
-import {HttpClient} from '@angular/common/http';
 import {AddRecipeService} from '../service/add-recipe.service';
 
 @Component({
@@ -19,13 +18,11 @@ export class AddRecipeComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   valueSelect = GlobalConstants.getCategoryRecipe;
-  uploadImage: Select = {value: 'Receta sin imagen', viewValue: './assets/img/default.jpg'};
+  imageDefault: Select = GlobalConstants.imageDefault;
+  imageFile: File;
 
-
-  constructor(
-    public addRecipeService: AddRecipeService,
-    private formBuilder: FormBuilder,
-    private request: HttpClient) {
+  constructor(public addRecipeService: AddRecipeService,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
@@ -38,27 +35,37 @@ export class AddRecipeComponent implements OnInit {
     });
   }
 
+  changeFile() {
+    this.removeFile();
+    this.onClick();
+  }
+
   onClick() {
     const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
     fileUpload.onchange = () => {
-      $('.fileinput-new').hide();
-      $('.fileinput-exists').show();
       this.addRecipeService.uploadFile(fileUpload.files[0]).subscribe(
-      name => {
-
-      },
-      error => {
+        name => {
+          const file = fileUpload.files[0];
+          this.imageFile = new File([file], name, {type: file.type});
+          $('.fileinput-new').hide();
+          $('.fileinput-exists').show();
+        },
+        error => {
           console.log(error);
-      });
+        });
     };
     fileUpload.click();
   }
 
   removeFile() {
-    const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
-    this.request.post(GlobalConstants.apiUrl + '/remove/file', fileUpload.files[0].name).subscribe(
-      (event: any) => {
-        console.log(event);
+    this.addRecipeService.removeFile(this.imageFile).subscribe(
+      name => {
+        $('.fileinput-exists').hide();
+        $('.fileinput-new').show();
+        this.imageFile = null;
+      },
+      error => {
+        console.log(error);
       }
     );
   }

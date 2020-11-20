@@ -8,6 +8,10 @@ export class GlobalConstants {
   public static uploadFile: string = '/upload/file';
   public static removeFile: string = '/remove/file';
 
+  public static imageDefault: Select = {
+    value: 'Receta sin imagen', viewValue: './assets/img/default.jpg'
+  };
+
   public static routeInfoSearch: RouteInfo = {
     path: '/search', title: 'Buscar Recetas', icon: 'person_search'
   };
@@ -31,12 +35,12 @@ export class GlobalConstants {
   ];
 
   public static getCategoryRecipe: Select[] = [
-    {value: "1", viewValue: "Bebida"},
-    {value: "2", viewValue: "Entrante"},
-    {value: "3", viewValue: "Plato Unico"},
-    {value: "4", viewValue: "Primer Plato"},
-    {value: "5", viewValue: "Segundo Plato"},
-    {value: "6", viewValue: "Postre"},
-    {value: "7", viewValue: "Otro"}
+    {value: '1', viewValue: 'Bebida'},
+    {value: '2', viewValue: 'Entrante'},
+    {value: '3', viewValue: 'Plato Unico'},
+    {value: '4', viewValue: 'Primer Plato'},
+    {value: '5', viewValue: 'Segundo Plato'},
+    {value: '6', viewValue: 'Postre'},
+    {value: '7', viewValue: 'Otro'}
   ];
 }
