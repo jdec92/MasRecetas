@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
   providedIn: 'root'
 })
 
-export class AddRecipeService {
+export class StepRecipeService {
   constructor(private request: HttpClient) {
   }
 

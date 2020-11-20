@@ -1,0 +1,16 @@
+<form [formGroup]="formIngredientGroup">
+  <mat-form-field>
+    <mat-label>Address</mat-label>
+    <input matInput placeholder="Ex. 1 Main St, New York, NY" [formControlName]="name" required>
+  </mat-form-field>
+
+  <div class="row pull-right">
+    <button mat-raised-button matStepperPrevious class="btn"><i
+      class="material-icons">arrow_back_ios</i>Atrás
+    </button>
+    <button mat-raised-button matStepperNext class="btn btn-danger">Continuar<i
+      class="material-icons">arrow_forward_ios</i>
+    </button>
+  </div>
+
+</form>

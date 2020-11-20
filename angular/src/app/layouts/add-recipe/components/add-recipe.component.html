@@ -8,88 +8,18 @@
           </div>
           <div class="card-body">
             <mat-horizontal-stepper #stepper>
-              <mat-step [stepControl]="firstFormGroup" errorMessage="Campo incompleto.">
-                <form [formGroup]="firstFormGroup">
-                  <ng-template matStepLabel>Descripción de la Receta</ng-template>
-                  <div class="row justify-content-center">
-                    <div class="col-md-6">
-                      <mat-form-field>
-                        <mat-label>Titulo</mat-label>
-                        <input matInput placeholder="Nombre de la Receta" formControlName="nameCtrl" required>
-                      </mat-form-field>
-                    </div>
-                    <div class="col-md-6">
-                      <mat-form-field>
-                        <mat-label>Categoría</mat-label>
-                        <mat-select formControlName="categoryCtrl" required>
-                          <mat-option>--</mat-option>
-                          <mat-option *ngFor="let category of valueSelect" [value]="category.value">
-                            {{category.viewValue}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-                  </div>
-                  <div class="row justify-content-center">
-                    <div class="col-md-4">
-                      <div class="row text-center">
-                        <mat-label>Imagen de la Receta</mat-label>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <button mat-button class="btn btn-rose btn-round btn-file fileinput-new" (click)="onClick()">
-                            <span>Añadir imagen</span>
-                          </button>
-                        </div>
-                        <div class="col-sm-6">
-                          <button mat-button class="btn btn-rose btn-round btn-file fileinput-exists"
-                                  (click)="changeFile()">
-                            <span>Cambiar</span>
-                          </button>
-                        </div>
-                        <div class="col-sm-6">
-                          <button mat-button class="btn btn-danger btn-round fileinput-exists" (click)="removeFile()">
-                            <i class="fa fa-times"></i> Borrar
-                          </button>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div data-provides="fileinput" class="fileinput text-center">
-                          <img *ngIf="imageFile" src="{{imageFile.name}}" class="img fileinput-exists">
-                          <img *ngIf="!imageFile" src="{{imageDefault.viewValue}}" alt="{{imageDefault.value}}"
-                               class="img">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="file" id="fileUpload" name="fileUpload" accept="image/*" class="d-none"/>
-                  <div class="row pull-right">
-                    <button mat-raised-button matStepperNext class="btn btn-danger">Continuar</button>
-                  </div>
-                </form>
+              <mat-step [stepControl]="formRecipe" errorMessage="Campo incompleto.">
+                <ng-template matStepLabel>Descripción de la Receta</ng-template>
+                <app-step-recipe [formRecipeGroup]="formRecipe" name="nameCtrl"
+                                 category="categoryCtrl"></app-step-recipe>
               </mat-step>
-              <mat-step [stepControl]="secondFormGroup" errorMessage="Address is required.">
-                <form [formGroup]="secondFormGroup">
-                  <ng-template matStepLabel>Fill out your address</ng-template>
-                  <mat-form-field>
-                    <mat-label>Address</mat-label>
-                    <input matInput placeholder="Ex. 1 Main St, New York, NY" formControlName="secondCtrl"
-                           required>
-                  </mat-form-field>
-                  <div>
-                    <p>Go to a different step to see the error state</p>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button matStepperNext>Next</button>
-                  </div>
-                </form>
+              <mat-step [stepControl]="formIngredient" errorMessage="Address is required.">
+                <ng-template matStepLabel>Ingredientes de la Receta</ng-template>
+                    <app-step-ingredient [formIngredientGroup]="formIngredient" name="secondCtrl"></app-step-ingredient>
               </mat-step>
               <mat-step>
-                <ng-template matStepLabel>Done</ng-template>
-                <p>You are now done.</p>
-                <div>
-                  <button mat-button matStepperPrevious>Back</button>
-                  <button mat-button (click)="stepper.reset()">Reset</button>
-                </div>
+                <ng-template matStepLabel>Elaboración de la Receta</ng-template>
+                <app-step-preparation [formPreparationGroup]="formPreparation" name="threeCtrl"></app-step-preparation>
               </mat-step>
             </mat-horizontal-stepper>
           </div>

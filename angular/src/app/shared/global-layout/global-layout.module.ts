@@ -20,6 +20,9 @@ import {WelcomeComponent} from '../../layouts/welcome/components/welcome.compone
 import {GlobalLayoutRoutes} from './global-layout.routing';
 import {AddRecipeComponent} from '../../layouts/add-recipe/components/add-recipe.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {StepRecipeComponent} from '../../core/step-recipe/components/step-recipe.component';
+import {StepIngredientComponent} from '../../core/step-ingredient/components/step-ingredient.component';
+import {StepPreparationComponent} from '../../core/step-preparation/components/step-preparation.component';
 
 @NgModule({
   imports: [
@@ -35,18 +38,21 @@ import {MatStepperModule} from '@angular/material/stepper';
     MatSelectModule,
     MatTooltipModule,
   ],
-  declarations: [
-    WelcomeComponent,
-    AddRecipeComponent,
-    DashboardComponent,
-    UserProfileComponent,
-    TableListComponent,
-    TypographyComponent,
-    IconsComponent,
-    MapsComponent,
-    NotificationsComponent,
-    UpgradeComponent,
-  ]
+    declarations: [
+        WelcomeComponent,
+        AddRecipeComponent,
+        DashboardComponent,
+        UserProfileComponent,
+        TableListComponent,
+        TypographyComponent,
+        IconsComponent,
+        MapsComponent,
+        NotificationsComponent,
+        UpgradeComponent,
+        StepRecipeComponent,
+        StepIngredientComponent,
+        StepPreparationComponent
+    ]
 })
 
 export class GlobalLayoutModule {
