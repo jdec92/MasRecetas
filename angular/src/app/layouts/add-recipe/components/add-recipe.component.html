@@ -7,7 +7,7 @@
             <h4 class="card-title">{{routeInfoAddRecipe.title}}</h4>
           </div>
           <div class="card-body">
-            <mat-horizontal-stepper #stepper>
+            <mat-horizontal-stepper>
               <mat-step [stepControl]="formRecipe" errorMessage="Campo incompleto.">
                 <ng-template matStepLabel>Descripción de la Receta</ng-template>
                 <app-step-recipe [formRecipeGroup]="formRecipe" name="nameCtrl"
@@ -15,7 +15,7 @@
               </mat-step>
               <mat-step [stepControl]="formIngredient" errorMessage="Address is required.">
                 <ng-template matStepLabel>Ingredientes de la Receta</ng-template>
-                    <app-step-ingredient [formIngredientGroup]="formIngredient" name="secondCtrl"></app-step-ingredient>
+                    <app-step-ingredient [formIngredientGroup]="formIngredient" controlValidator="ingredientCtrl"></app-step-ingredient>
               </mat-step>
               <mat-step>
                 <ng-template matStepLabel>Elaboración de la Receta</ng-template>

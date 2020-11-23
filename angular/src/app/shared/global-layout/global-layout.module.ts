@@ -23,6 +23,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {StepRecipeComponent} from '../../core/step-recipe/components/step-recipe.component';
 import {StepIngredientComponent} from '../../core/step-ingredient/components/step-ingredient.component';
 import {StepPreparationComponent} from '../../core/step-preparation/components/step-preparation.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -30,6 +32,7 @@ import {StepPreparationComponent} from '../../core/step-preparation/components/s
     RouterModule.forChild(GlobalLayoutRoutes),
     FormsModule,
     ReactiveFormsModule,
+    MatTableModule,
     MatButtonModule,
     MatRippleModule,
     MatFormFieldModule,
@@ -38,21 +41,21 @@ import {StepPreparationComponent} from '../../core/step-preparation/components/s
     MatSelectModule,
     MatTooltipModule,
   ],
-    declarations: [
-        WelcomeComponent,
-        AddRecipeComponent,
-        DashboardComponent,
-        UserProfileComponent,
-        TableListComponent,
-        TypographyComponent,
-        IconsComponent,
-        MapsComponent,
-        NotificationsComponent,
-        UpgradeComponent,
-        StepRecipeComponent,
-        StepIngredientComponent,
-        StepPreparationComponent
-    ]
+  declarations: [
+    WelcomeComponent,
+    AddRecipeComponent,
+    DashboardComponent,
+    UserProfileComponent,
+    TableListComponent,
+    TypographyComponent,
+    IconsComponent,
+    MapsComponent,
+    NotificationsComponent,
+    UpgradeComponent,
+    StepRecipeComponent,
+    StepIngredientComponent,
+    StepPreparationComponent
+  ]
 })
 
 export class GlobalLayoutModule {

@@ -28,8 +28,8 @@ export class AddRecipeComponent implements OnInit {
       categoryCtrl: ['', Validators.required]
     });
     this.formIngredient = this.formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+      ingredientCtrl: ['', Validators.required]
+    })
     this.formPreparation = this.formBuilder.group({
       threeCtrl: ['', Validators.required]
     });

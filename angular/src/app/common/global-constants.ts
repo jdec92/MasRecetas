@@ -1,5 +1,6 @@
 import {RouteInfo} from '../models/routeInfo';
 import {Select} from '../models/select';
+import {Ingredient} from '../models/ingredient';
 
 export class GlobalConstants {
   public static apiUrl: string = 'http://localhost/api';
@@ -42,5 +43,14 @@ export class GlobalConstants {
     {value: '5', viewValue: 'Segundo Plato'},
     {value: '6', viewValue: 'Postre'},
     {value: '7', viewValue: 'Otro'}
+  ];
+
+  public static getMeasureIngredient: Select[] = [
+    {value: '0', viewValue: 'Sin Medición'},
+    {value: '1', viewValue: '(ml) Mililitros'},
+    {value: '2', viewValue: '(g) Gramos'},
+    {value: '3', viewValue: '(tsp) Cucharilla'},
+    {value: '4', viewValue: '(tbsp) Cuchara'},
+    {value: '5', viewValue: '(cup) Taza'}
   ];
 }
