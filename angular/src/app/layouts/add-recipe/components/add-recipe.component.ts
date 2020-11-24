@@ -31,7 +31,7 @@ export class AddRecipeComponent implements OnInit {
       ingredientCtrl: ['', Validators.required]
     })
     this.formPreparation = this.formBuilder.group({
-      threeCtrl: ['', Validators.required]
+      preparationCtrl: ['', Validators.required]
     });
   }
 }

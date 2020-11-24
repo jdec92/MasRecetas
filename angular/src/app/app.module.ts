@@ -11,7 +11,6 @@ import {GlobalLayoutComponent} from './shared/global-layout/components/global-la
 import {WelcomeService} from './layouts/welcome/service/welcome.service';
 import {BrowserModule} from '@angular/platform-browser';
 
-
 @NgModule({
   imports: [
     BrowserAnimationsModule,

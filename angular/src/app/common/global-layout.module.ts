@@ -24,6 +24,7 @@ import {UpgradeComponent} from '../upgrade/upgrade.component';
 import {StepIngredientComponent} from '../core/step-ingredient/components/step-ingredient.component';
 import {StepPreparationComponent} from '../core/step-preparation/components/step-preparation.component';
 import {StepRecipeComponent} from '../core/step-recipe/components/step-recipe.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {StepRecipeComponent} from '../core/step-recipe/components/step-recipe.co
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    AngularEditorModule,
   ],
   declarations: [
     WelcomeComponent,
@@ -58,4 +60,5 @@ import {StepRecipeComponent} from '../core/step-recipe/components/step-recipe.co
   ]
 })
 
-export class GlobalLayoutModule { }
+export class GlobalLayoutModule {
+}

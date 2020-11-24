@@ -1,6 +1,5 @@
 import {RouteInfo} from '../models/routeInfo';
 import {Select} from '../models/select';
-import {Ingredient} from '../models/ingredient';
 import {Routes} from '@angular/router';
 import {WelcomeComponent} from '../layouts/welcome/components/welcome.component';
 import {AddRecipeComponent} from '../layouts/add-recipe/components/add-recipe.component';

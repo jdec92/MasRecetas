@@ -1,8 +1,14 @@
 <form [formGroup]="formPreparationGroup">
-  <mat-form-field>
-    <mat-label>Address</mat-label>
-    <input matInput placeholder="Ex. 1 Main St, New York, NY" [formControlName]="name" required>
-  </mat-form-field>
+  <div class="col-md-12">
+    <div class="card card-plain">
+      <div class="card-header card-header-secondary text-center">
+        <h4 class="card-title mt-0"> Modo de Preparación</h4>
+      </div>
+      <div class="card-body">
+        <angular-editor [formControlName]="name" [config]="configEditor"></angular-editor>
+      </div>
+    </div>
+  </div>
 
   <div class="row pull-right">
     <button mat-raised-button matStepperPrevious class="btn"><i

@@ -23,7 +23,6 @@ export class StepIngredientComponent implements OnInit {
   @Input() formIngredientGroup: FormGroup;
   @Input() controlValidator: string;
 
-
   constructor() {
   }
 
@@ -53,13 +52,7 @@ export class StepIngredientComponent implements OnInit {
   }
 
   validateIngredients() {
-    let isComplete = true;
-    this.dataSource.forEach((value, key) => {
-      if (value.title === '') {
-        isComplete = false;
-      }
-    });
-    if (isComplete) {
+    if (this.isFormTableComplete()) {
       this.formIngredientGroup.get(this.controlValidator).setValue(JSON.stringify(this.dataSource));
     } else {
       this.formIngredientGroup.get(this.controlValidator).setValue('');
@@ -74,5 +67,14 @@ export class StepIngredientComponent implements OnInit {
     return {id: id, title: '', measure: 0, amount: 0};
   }
 
+  isFormTableComplete(): boolean {
+    let isComplete = true;
+    this.dataSource.forEach((value, key) => {
+      if (value.title === '') {
+        isComplete = false;
+      }
+    });
+    return isComplete;
+  }
 
 }
