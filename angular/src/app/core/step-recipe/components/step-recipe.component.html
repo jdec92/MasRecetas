@@ -50,7 +50,7 @@
       </div>
     </div>
   </div>
-  <input type="file" id="fileUpload" name="fileUpload" accept="image/*" class="d-none"/>
+  <input type="file" [formControlName]="image" accept="image/*" class="d-none"/>
   <div class="row pull-right">
     <button mat-raised-button matStepperNext class="btn btn-danger">Continuar<i
       class="material-icons">arrow_forward_ios</i>

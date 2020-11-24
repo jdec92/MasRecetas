@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {configAngularEditor} from '../../angular-editor/config-editor';
 
@@ -10,7 +10,9 @@ import {configAngularEditor} from '../../angular-editor/config-editor';
 export class StepPreparationComponent implements OnInit {
   @Input() formPreparationGroup: FormGroup;
   @Input() name: string;
-  htmlContent = '';
+
+  @Output() eventCallLayout = new EventEmitter();
+
   configEditor = configAngularEditor;
 
   constructor() {
@@ -18,4 +20,9 @@ export class StepPreparationComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  validateFormsSteps() {
+    this.eventCallLayout.emit();
+  }
+
 }

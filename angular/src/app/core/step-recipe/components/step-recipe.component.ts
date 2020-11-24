@@ -17,6 +17,7 @@ export class StepRecipeComponent implements OnInit {
   @Input() formRecipeGroup: FormGroup;
   @Input() name: string;
   @Input() category: string;
+  @Input() image: string;
 
   constructor(public stepRecipeService: StepRecipeService) {
   }
@@ -30,7 +31,7 @@ export class StepRecipeComponent implements OnInit {
   }
 
   onClick() {
-    const fileUpload = document.getElementById('fileUpload') as HTMLInputElement;
+    const fileUpload = document.getElementById(this.image) as HTMLInputElement;
     fileUpload.onchange = () => {
       this.stepRecipeService.uploadFile(fileUpload.files[0]).subscribe(
         name => {

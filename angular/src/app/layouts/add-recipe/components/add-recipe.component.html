@@ -10,16 +10,18 @@
             <mat-horizontal-stepper>
               <mat-step [stepControl]="formRecipe" errorMessage="Campo incompleto.">
                 <ng-template matStepLabel>Descripción de la Receta</ng-template>
-                <app-step-recipe [formRecipeGroup]="formRecipe" name="nameCtrl"
-                                 category="categoryCtrl"></app-step-recipe>
+                <app-step-recipe [formRecipeGroup]="formRecipe" name="name"
+                                 category="category" image="image"></app-step-recipe>
               </mat-step>
               <mat-step [stepControl]="formIngredient" errorMessage="Address is required.">
                 <ng-template matStepLabel>Ingredientes de la Receta</ng-template>
-                    <app-step-ingredient [formIngredientGroup]="formIngredient" controlValidator="ingredientCtrl"></app-step-ingredient>
+                <app-step-ingredient [formIngredientGroup]="formIngredient"
+                                     controlValidator="ingredients"></app-step-ingredient>
               </mat-step>
               <mat-step>
                 <ng-template matStepLabel>Elaboración de la Receta</ng-template>
-                <app-step-preparation [formPreparationGroup]="formPreparation" name="preparationCtrl"></app-step-preparation>
+                <app-step-preparation [formPreparationGroup]="formPreparation" name="preparation"
+                                      (eventCallLayout)="submitForms()"></app-step-preparation>
               </mat-step>
             </mat-horizontal-stepper>
           </div>

@@ -24,15 +24,22 @@ export class AddRecipeComponent implements OnInit {
 
   ngOnInit() {
     this.formRecipe = this.formBuilder.group({
-      nameCtrl: ['', Validators.required],
-      categoryCtrl: ['', Validators.required]
+      name: ['', Validators.required],
+      category: ['', Validators.required],
+      image: ['']
     });
     this.formIngredient = this.formBuilder.group({
-      ingredientCtrl: ['', Validators.required]
+      ingredients: ['', Validators.required]
     })
     this.formPreparation = this.formBuilder.group({
-      preparationCtrl: ['', Validators.required]
+      preparation: ['', Validators.required]
     });
+  }
+
+  submitForms() {
+    console.log(this.formRecipe.get('name').value);
+    console.log(this.formIngredient.get('ingredients').value);
+    console.log(this.formPreparation.get('preparation').value);
   }
 }
 
