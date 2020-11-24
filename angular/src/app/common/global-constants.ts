@@ -1,6 +1,17 @@
 import {RouteInfo} from '../models/routeInfo';
 import {Select} from '../models/select';
 import {Ingredient} from '../models/ingredient';
+import {Routes} from '@angular/router';
+import {WelcomeComponent} from '../layouts/welcome/components/welcome.component';
+import {AddRecipeComponent} from '../layouts/add-recipe/components/add-recipe.component';
+import {DashboardComponent} from '../dashboard/dashboard.component';
+import {UserProfileComponent} from '../user-profile/user-profile.component';
+import {TableListComponent} from '../table-list/table-list.component';
+import {TypographyComponent} from '../typography/typography.component';
+import {IconsComponent} from '../icons/icons.component';
+import {MapsComponent} from '../maps/maps.component';
+import {NotificationsComponent} from '../notifications/notifications.component';
+import {UpgradeComponent} from '../upgrade/upgrade.component';
 
 export class GlobalConstants {
   public static apiUrl: string = 'http://localhost/api';
@@ -53,4 +64,18 @@ export class GlobalConstants {
     {value: '4', viewValue: '(tbsp) Cuchara'},
     {value: '5', viewValue: '(cup) Taza'}
   ];
+
+  public static getLayoutRoutes: Routes = [
+    {path: 'welcome', component: WelcomeComponent},
+    {path: 'add', component: AddRecipeComponent},
+    {path: 'dashboard', component: DashboardComponent},
+    {path: 'user-profile', component: UserProfileComponent},
+    {path: 'table-list', component: TableListComponent},
+    {path: 'typography', component: TypographyComponent},
+    {path: 'icons', component: IconsComponent},
+    {path: 'maps', component: MapsComponent},
+    {path: 'notifications', component: NotificationsComponent},
+    {path: 'upgrade', component: UpgradeComponent}
+  ];
+
 }

@@ -35,19 +35,35 @@ export class StepIngredientComponent implements OnInit {
     this.table.renderRows();
   }
 
-  removeIngredientFile(row_obj) {
+  removeIngredientFile(row_obj: Ingredient) {
     this.dataSource = this.dataSource.filter((value, key) => {
-      return key != row_obj.id;
+      return key !== row_obj.id;
     });
   }
 
+  updateIngredient(event, row_obj: Ingredient) {
+    if (event.hasOwnProperty('source')) {
+      row_obj.measure = Number(event.value);
+    } else if (event.target.id === 'title') {
+      row_obj.title = event.target.value;
+    } else if (event.target.id === 'amount') {
+      row_obj.amount = parseFloat(event.target.value);
+    }
+    this.dataSource[row_obj.id] = row_obj;
+  }
+
   validateIngredients() {
-    console.log(this.table);
+    let isComplete = true;
     this.dataSource.forEach((value, key) => {
-      console.log(this.table.dataSource[key]);
-      console.log(value);
+      if (value.title === '') {
+        isComplete = false;
+      }
     });
-    this.formIngredientGroup.get(this.controlValidator).setValue('fufa');
+    if (isComplete) {
+      this.formIngredientGroup.get(this.controlValidator).setValue(JSON.stringify(this.dataSource));
+    } else {
+      this.formIngredientGroup.get(this.controlValidator).setValue('');
+    }
   }
 
   getTableIngredient(): Ingredient[] {
