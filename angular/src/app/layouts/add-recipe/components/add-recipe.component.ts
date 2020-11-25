@@ -1,8 +1,12 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalConstants} from '../../../common/global-constants';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
-import {StepRecipeComponent} from '../../../core/step-recipe/components/step-recipe.component';
+import {Recipe} from '../../../models/recipe';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogComponent} from '../../../core/dialog/components/dialog.component';
+import {AddRecipeService} from '../service/add-recipe.service';
+import {DialogData} from '../../../models/dialog-data';
 
 
 @Component({
@@ -19,7 +23,7 @@ export class AddRecipeComponent implements OnInit {
   formIngredient: FormGroup;
   formPreparation: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public service: AddRecipeService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -37,9 +41,37 @@ export class AddRecipeComponent implements OnInit {
   }
 
   submitForms() {
-    console.log(this.formRecipe.get('name').value);
-    console.log(this.formIngredient.get('ingredients').value);
-    console.log(this.formPreparation.get('preparation').value);
+    if (this.formRecipe.valid && this.formIngredient.valid && this.formPreparation.valid) {
+      this.service.createRecipeAndIngredients(this.createModelRequest()).subscribe(
+        (data: string) => {
+          console.log(data);
+        }, error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.openDialog();
+    }
+  }
+
+  openDialog() {
+    const data: DialogData = {
+      title: 'Datos Incompletos',
+      content: 'Por favor revise los pasos que están marcados en rojo',
+      button: 'Cerrar'
+    };
+    this.dialog.open(DialogComponent, {data: data});
+  }
+
+  createModelRequest(): Recipe {
+    return {
+      id: 0,
+      title: this.formRecipe.get('name').value,
+      image_path: this.formRecipe.get('image').value,
+      category: this.formRecipe.get('category').value,
+      preparation: this.formPreparation.get('preparation').value,
+      ingredients: JSON.parse(this.formIngredient.get('ingredients').value)
+    }
   }
 }
 

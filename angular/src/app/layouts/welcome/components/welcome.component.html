@@ -37,8 +37,7 @@
             <h4 class="card-title">
               <a href="{{urlRecipe}}/{{recipe.id}}">{{recipe.title}}</a>
             </h4>
-            <div class="card-description"> {{recipe.preparation}}
-            </div>
+            <div class="card-description" [innerHTML]="recipe.preparation"></div>
           </div>
           <div class="card-footer justify-content-center">
             <a href="{{urlRecipe}}/{{recipe.id}}" class="btn btn-round">Seguir leyendo</a>

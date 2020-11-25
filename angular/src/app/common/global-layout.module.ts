@@ -25,6 +25,8 @@ import {StepIngredientComponent} from '../core/step-ingredient/components/step-i
 import {StepPreparationComponent} from '../core/step-preparation/components/step-preparation.component';
 import {StepRecipeComponent} from '../core/step-recipe/components/step-recipe.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
+import {MatDialogModule} from '@angular/material/dialog';
+import {DialogComponent} from '../core/dialog/components/dialog.component';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatDialogModule,
     AngularEditorModule,
   ],
   declarations: [
@@ -57,6 +60,7 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
     StepRecipeComponent,
     StepIngredientComponent,
     StepPreparationComponent,
+    DialogComponent,
   ]
 })
 
