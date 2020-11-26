@@ -1,0 +1,21 @@
+<form [formGroup]="formPreparationGroup">
+  <div class="col-md-12">
+    <div class="card card-plain">
+      <div class="card-header card-header-secondary text-center">
+        <h4 class="card-title mt-0"> Modo de Preparación</h4>
+      </div>
+      <div class="card-body">
+        <angular-editor [formControlName]="name" [config]="configEditor"></angular-editor>
+      </div>
+    </div>
+  </div>
+
+  <div class="row pull-right">
+    <button mat-raised-button matStepperPrevious class="btn"><i
+      class="material-icons">arrow_back_ios</i>Atrás
+    </button>
+    <button mat-raised-button matStepperNext class="btn btn-danger" (click)="validateFormsSteps()">Guardar<i
+      class="material-icons">arrow_forward_ios</i>
+    </button>
+  </div>
+</form>

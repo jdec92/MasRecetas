@@ -7,6 +7,7 @@ use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,8 +63,21 @@ class RecipeController extends AbstractController
     public function uploadFile(Request $request): Response{
         $data = $request->files->get('image');
         $fileName = date("Y-m-d_h-i-s")."_".$data->getClientOriginalName();
-        $data->move($this->getParameter('path_project').'/uploads',$fileName);
+        $data->move($this->getParameter('path_project').''.$this->getParameter('path_upload_file'),$fileName);
 
-        return new Response($this->getParameter('path_upload_file')."/".$fileName);
+        return new JsonResponse($this->getParameter('path_image_front').'/'.$fileName);
+    }
+
+    public function removeFile(Request $request): Response{
+        $path = str_replace($this->getParameter('path_image_front'),$this->getParameter('path_upload_file'), $request->getContent());
+        if(unlink($this->getParameter('path_project').''.$path)){
+            return new JsonResponse("ok");
+        }
+        throw new BadRequestHttpException("Error al borrar el archivo ".$path);
+    }
+
+    public function showFile($name) {
+        $path = $this->getParameter('path_project').''.$this->getParameter('path_upload_file').'/'.$name;
+        return new BinaryFileResponse($path);
     }
 }

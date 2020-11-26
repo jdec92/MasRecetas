@@ -27,3 +27,13 @@ upload_file:
     path: /api/upload/file
     controller: App\Controller\RecipeController::uploadFile
     methods: [POST]
+
+remote_file:
+    path: /api/remove/file
+    controller: App\Controller\RecipeController::removeFile
+    methods: [POST]
+
+show_image:
+    path: /api/uploads/{name}
+    controller: App\Controller\RecipeController::showFile
+    methods: [GET]

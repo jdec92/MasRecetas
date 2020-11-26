@@ -12,6 +12,7 @@ use App\Repository\RecipeHasIngredientRepository;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -36,7 +37,7 @@ class RecipeHasIngredientController extends AbstractController
                 $entityManager->persist($recipeHasIngredient);
                 $entityManager->flush();
             }
-            return new Response("OK");
+            return new JsonResponse("OK");
         } catch (\Exception $e) {
             return new BadRequestHttpException("Database error");
         }

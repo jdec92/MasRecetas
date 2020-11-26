@@ -15,7 +15,7 @@ const routes: Routes =[
     component: GlobalLayoutComponent,
     children: [{
       path: '',
-      loadChildren: './shared/global-layout/global-layout.module#GlobalLayoutModule'
+      loadChildren: './common/global-layout.module#GlobalLayoutModule'
     }]
   }
 ];
