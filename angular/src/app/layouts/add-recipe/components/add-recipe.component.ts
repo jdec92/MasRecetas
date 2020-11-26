@@ -7,7 +7,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {DialogComponent} from '../../../core/dialog/components/dialog.component';
 import {AddRecipeService} from '../service/add-recipe.service';
 import {DialogData} from '../../../models/dialog-data';
-
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-recipe',
@@ -23,7 +23,8 @@ export class AddRecipeComponent implements OnInit {
   formIngredient: FormGroup;
   formPreparation: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, public service: AddRecipeService, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, public service: AddRecipeService,
+              public dialog: MatDialog, private route: Router) {
   }
 
   ngOnInit() {
@@ -43,21 +44,21 @@ export class AddRecipeComponent implements OnInit {
   submitForms() {
     if (this.formRecipe.valid && this.formIngredient.valid && this.formPreparation.valid) {
       this.service.createRecipeAndIngredients(this.createModelRequest()).subscribe(
-        (data: string) => {
-          console.log(data);
+        data => {
+          this.route.navigate(['/']);
         }, error => {
-          console.log(error);
+          this.openDialog('Error al Crear la Receta', 'Por favor vuelva a intentar crearla');
         }
       );
     } else {
-      this.openDialog();
+      this.openDialog('Datos Incompletos', 'Por favor revise los pasos que están marcados en rojo');
     }
   }
 
-  openDialog() {
+  openDialog(title: string, content: string) {
     const data: DialogData = {
-      title: 'Datos Incompletos',
-      content: 'Por favor revise los pasos que están marcados en rojo',
+      title: title,
+      content: content,
       button: 'Cerrar'
     };
     this.dialog.open(DialogComponent, {data: data});

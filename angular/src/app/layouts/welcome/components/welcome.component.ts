@@ -3,6 +3,7 @@ import {WelcomeService} from '../service/welcome.service';
 import {Recipe} from '../../../models/recipe';
 import {GlobalConstants} from '../../../common/global-constants';
 import {Select} from '../../../models/select';
+import Global = WebAssembly.Global;
 
 @Component({
   selector: 'app-welcome',
@@ -14,6 +15,7 @@ export class WelcomeComponent implements OnInit {
   bestRecipes: Recipe[];
   urlAddRecipe: string = GlobalConstants.routeInfoAddRecipe.path;
   urlRecipe: string = GlobalConstants.routeInfoRecipe.path;
+  urlApi: string = GlobalConstants.apiUrl;
   imageDefault: Select = GlobalConstants.imageDefault;
 
   constructor(public service: WelcomeService) {

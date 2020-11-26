@@ -7,6 +7,7 @@ use App\Entity\Recipe;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,5 +74,10 @@ class RecipeController extends AbstractController
             return new JsonResponse("ok");
         }
         throw new BadRequestHttpException("Error al borrar el archivo ".$path);
+    }
+
+    public function showFile($name) {
+        $path = $this->getParameter('path_project').''.$this->getParameter('path_upload_file').'/'.$name;
+        return new BinaryFileResponse($path);
     }
 }

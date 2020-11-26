@@ -11,6 +11,7 @@ import {StepRecipeService} from '../service/step-recipe.service';
 })
 export class StepRecipeComponent implements OnInit {
   valueSelect = GlobalConstants.getCategoryRecipe;
+  urlApi = GlobalConstants.apiUrl;
   imageDefault: Select = GlobalConstants.imageDefault;
   imageFile: File;
 
@@ -31,10 +32,11 @@ export class StepRecipeComponent implements OnInit {
   }
 
   onClick() {
-    const fileUpload = document.getElementById(this.image) as HTMLInputElement;
+    const fileUpload = document.getElementById("fileUpload") as HTMLInputElement;
     fileUpload.onchange = () => {
       this.stepRecipeService.uploadFile(fileUpload.files[0]).subscribe(
         name => {
+          this.formRecipeGroup.get(this.image).setValue(name);
           const file = fileUpload.files[0];
           this.imageFile = new File([file], name, {type: file.type});
           $('.fileinput-new').hide();
@@ -53,7 +55,8 @@ export class StepRecipeComponent implements OnInit {
         $('.fileinput-exists').hide();
         $('.fileinput-new').show();
         this.imageFile = null;
-      },
+        this.formRecipeGroup.get(this.image).setValue('');
+        },
       error => {
         console.log(error);
       }

@@ -57,11 +57,12 @@ export class GlobalConstants {
 
   public static getMeasureIngredient: Select[] = [
     {value: '0', viewValue: 'Sin Medición'},
-    {value: '1', viewValue: '(ml) Mililitros'},
-    {value: '2', viewValue: '(g) Gramos'},
-    {value: '3', viewValue: '(tsp) Cucharilla'},
-    {value: '4', viewValue: '(tbsp) Cuchara'},
-    {value: '5', viewValue: '(cup) Taza'}
+    {value: '1', viewValue: 'Unidad'},
+    {value: '2', viewValue: '(ml) Mililitros'},
+    {value: '3', viewValue: '(g) Gramos'},
+    {value: '4', viewValue: '(tsp) Cucharilla'},
+    {value: '5', viewValue: '(tbsp) Cuchara'},
+    {value: '6', viewValue: '(cup) Taza'}
   ];
 
   public static getLayoutRoutes: Routes = [

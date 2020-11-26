@@ -6,7 +6,7 @@
 parameters:
     path_project: '%kernel.project_dir%'
     path_upload_file:  '/public/uploads'
-    path_image_front: '/api/uploads'
+    path_image_front: '/uploads'
 
 services:
     # default configuration for services in *this* file
