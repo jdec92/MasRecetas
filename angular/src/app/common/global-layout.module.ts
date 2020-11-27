@@ -27,6 +27,7 @@ import {StepRecipeComponent} from '../core/step-recipe/components/step-recipe.co
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {MatDialogModule} from '@angular/material/dialog';
 import {DialogComponent} from '../core/dialog/components/dialog.component';
+import {ShowRecipeComponent} from '../layouts/show-recipe/components/show-recipe.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import {DialogComponent} from '../core/dialog/components/dialog.component';
     StepIngredientComponent,
     StepPreparationComponent,
     DialogComponent,
+    ShowRecipeComponent,
   ]
 })
 

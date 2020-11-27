@@ -29,8 +29,8 @@
         <div class="card card-product" data-count="6">
           <div data-header-animation="true" class="card-header card-header-image">
             <a href="{{urlRecipe}}/{{recipe.id}}">
-              <img *ngIf="recipe.image_path" src="{{urlApi}}{{recipe.image_path}}" alt="{{recipe.title}}" class="img">
-              <img *ngIf="!recipe.image_path" src="{{imageDefault.viewValue}}" alt="{{imageDefault.value}}" class="img">
+              <img *ngIf="recipe.imagePath" src="{{urlApi}}{{recipe.imagePath}}" alt="{{recipe.title}}" class="img">
+              <img *ngIf="!recipe.imagePath" src="{{imageDefault.viewValue}}" alt="{{imageDefault.value}}" class="img">
             </a>
           </div>
           <div class="card-body">

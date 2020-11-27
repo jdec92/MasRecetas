@@ -68,7 +68,7 @@ export class AddRecipeComponent implements OnInit {
     return {
       id: 0,
       title: this.formRecipe.get('name').value,
-      image_path: this.formRecipe.get('image').value,
+      imagePath: this.formRecipe.get('image').value,
       category: this.formRecipe.get('category').value,
       preparation: this.formPreparation.get('preparation').value,
       ingredients: JSON.parse(this.formIngredient.get('ingredients').value)

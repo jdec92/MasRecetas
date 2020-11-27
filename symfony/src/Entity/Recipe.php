@@ -27,7 +27,7 @@ class Recipe
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $image_path;
+    private $imagePath;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -75,12 +75,12 @@ class Recipe
 
     public function getImagePath(): ?string
     {
-        return $this->image_path;
+        return $this->imagePath;
     }
 
-    public function setImagePath(?string $image_path): self
+    public function setImagePath(?string $imagePath): self
     {
-        $this->image_path = $image_path;
+        $this->imagePath = $imagePath;
 
         return $this;
     }

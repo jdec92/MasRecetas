@@ -11,6 +11,7 @@ import {IconsComponent} from '../icons/icons.component';
 import {MapsComponent} from '../maps/maps.component';
 import {NotificationsComponent} from '../notifications/notifications.component';
 import {UpgradeComponent} from '../upgrade/upgrade.component';
+import {ShowRecipeComponent} from '../layouts/show-recipe/components/show-recipe.component';
 
 export class GlobalConstants {
   public static apiUrl: string = 'http://localhost/api';
@@ -32,7 +33,7 @@ export class GlobalConstants {
   };
 
   public static routeInfoRecipe: RouteInfo = {
-    path: '/show', title: 'Editar una Receta', icon: 'playlist_add'
+    path: '/show', title: 'Detalles de la Receta', icon: 'playlist_add'
   };
 
   public static routeInfoAddRecipe: RouteInfo = {
@@ -75,7 +76,8 @@ export class GlobalConstants {
     {path: 'icons', component: IconsComponent},
     {path: 'maps', component: MapsComponent},
     {path: 'notifications', component: NotificationsComponent},
-    {path: 'upgrade', component: UpgradeComponent}
+    {path: 'upgrade', component: UpgradeComponent},
+    {path: 'show/:id', component: ShowRecipeComponent}
   ];
 
 }

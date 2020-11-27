@@ -9,7 +9,7 @@ class Recipe
 
     private $title;
 
-    private $image_path;
+    private $imagePath;
 
     private $category;
 
@@ -21,7 +21,7 @@ class Recipe
     {
         $this->id = $recipe->getId();
         $this->title = $recipe->getTitle();
-        $this->image_path = $recipe->getImagePath();
+        $this->imagePath = $recipe->getImagePath();
         $this->category = $recipe->getCategory();
         $this->preparation = $recipe->getPreparation();
         $this->ingredients = $ingredients;
@@ -53,12 +53,12 @@ class Recipe
 
     public function getImagePath(): ?string
     {
-        return $this->image_path;
+        return $this->imagePath;
     }
 
-    public function setImagePath(?string $image_path): self
+    public function setImagePath(?string $imagePath): self
     {
-        $this->image_path = $image_path;
+        $this->imagePath = $imagePath;
 
         return $this;
     }
