@@ -21,7 +21,7 @@ export class GlobalConstants {
   public static removeFile: string = '/remove/file';
 
   public static imageDefault: Select = {
-    value: 'Receta sin imagen', viewValue: './assets/img/default.jpg'
+    value: 'Receta sin imagen', viewValue: './assets/img/default.jpg', acronym: ''
   };
 
   public static routeInfoSearch: RouteInfo = {
@@ -47,23 +47,23 @@ export class GlobalConstants {
   ];
 
   public static getCategoryRecipe: Select[] = [
-    {value: '1', viewValue: 'Bebida'},
-    {value: '2', viewValue: 'Entrante'},
-    {value: '3', viewValue: 'Plato Unico'},
-    {value: '4', viewValue: 'Primer Plato'},
-    {value: '5', viewValue: 'Segundo Plato'},
-    {value: '6', viewValue: 'Postre'},
-    {value: '7', viewValue: 'Otro'}
+    {value: '1', viewValue: 'Bebida', acronym: ''},
+    {value: '2', viewValue: 'Entrante', acronym: ''},
+    {value: '3', viewValue: 'Plato Unico', acronym: ''},
+    {value: '4', viewValue: 'Primer Plato', acronym: ''},
+    {value: '5', viewValue: 'Segundo Plato', acronym: ''},
+    {value: '6', viewValue: 'Postre', acronym: ''},
+    {value: '7', viewValue: 'Otro', acronym: ''}
   ];
 
   public static getMeasureIngredient: Select[] = [
-    {value: '0', viewValue: 'Sin Medición'},
-    {value: '1', viewValue: 'Unidad'},
-    {value: '2', viewValue: '(ml) Mililitros'},
-    {value: '3', viewValue: '(g) Gramos'},
-    {value: '4', viewValue: '(tsp) Cucharilla'},
-    {value: '5', viewValue: '(tbsp) Cuchara'},
-    {value: '6', viewValue: '(cup) Taza'}
+    {value: '0', viewValue: 'Sin Medición', acronym: ''},
+    {value: '1', viewValue: 'Unidad', acronym: ''},
+    {value: '2', viewValue: '(ml) Mililitros', acronym: 'ml'},
+    {value: '3', viewValue: '(g) Gramos', acronym: 'g'},
+    {value: '4', viewValue: '(tsp) Cucharilla', acronym: 'tsp'},
+    {value: '5', viewValue: '(tbsp) Cuchara', acronym: 'tbsp'},
+    {value: '6', viewValue: '(cup) Taza', acronym: 'cup'}
   ];
 
   public static getLayoutRoutes: Routes = [

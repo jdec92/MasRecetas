@@ -14,10 +14,9 @@ export class ShowRecipeComponent implements OnInit {
   idRecipe: string;
   recipe: Recipe;
   category: Select;
-  measureIngredient: Select[] = GlobalConstants.getMeasureIngredient;
   urlApi: string = GlobalConstants.apiUrl;
   imageDefault: Select = GlobalConstants.imageDefault;
-  numberDiner: number = 1;
+  numberDiner = 1;
 
   constructor(private activateRoute: ActivatedRoute, public service: ShowRecipeService) {
     this.idRecipe = this.activateRoute.snapshot.params.id;
@@ -34,8 +33,12 @@ export class ShowRecipeComponent implements OnInit {
     )
   }
 
-  updateNumberDiner(event: any){
+  updateNumberDiner(event: any) {
     this.numberDiner = event.target.value;
+  }
+
+  getAcronymMeasure(idMeasure): string {
+    return GlobalConstants.getMeasureIngredient.find(item => item.value === '' + idMeasure).acronym;
   }
 }
 

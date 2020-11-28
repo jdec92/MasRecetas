@@ -2,3 +2,7 @@
   width: 100%;
   border-radius: 6px;
 }
+
+.card-header-secondary{
+  background: linear-gradient(60deg, #686565, #636363);
+}
